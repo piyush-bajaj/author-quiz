@@ -11,8 +11,17 @@ function Hero() {
 	</div> );
 }
 
-function Turn( { author, books } ) {
-	return ( <div className="row turn" style={ { backgroundColor: "white" } }>
+function Turn( { author, books, highlight } ) {
+
+	function highlightBackground( highlight ) {
+		const mapping = {
+			"none": "white",
+			"correct": "green",
+			"wrong": "red"
+		};
+		return mapping[highlight];
+	}
+	return ( <div className="row turn" style={ { backgroundColor: highlightBackground( highlight ) } }>
 		<div className="col-4 offset-1">
 			<img src={ author.imageUrl } className="authorimage" alt="Author" />
 		</div>
@@ -40,11 +49,11 @@ function Book( { title } ) {
 	</div> )
 }
 
-function AuthorQuiz( { turnData } ) {
+function AuthorQuiz( { turnData, highlight } ) {
 	return (
 		<div className="container-fluid">
 			<Hero />
-			<Turn { ...turnData } />
+			<Turn { ...turnData } highlight={ highlight } />
 			<Continue />
 			<Footer />
 		</div>
