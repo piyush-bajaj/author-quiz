@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import AuthorQuiz from './AuthorQuiz';
 
 test( 'renders learn react link', () => {
-	const { getByText } = render( <App /> );
-	const linkElement = getByText( /learn react/i );
+	const { getByText } = render( <AuthorQuiz /> );
+	const linkElement = getByText( /Author Quiz/i );
 	expect( linkElement ).toBeInTheDocument();
 } );

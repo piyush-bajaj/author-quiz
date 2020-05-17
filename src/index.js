@@ -4,9 +4,25 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import AuthorQuiz from './AuthorQuiz';
 
+const authors = [
+	{
+		name: 'Mark Twain',
+		imageUrl: "images/authors/marktwain.jpg",
+		imageSource: "Wikimedia Commons",
+		books: ["The Adventures of Huckleberry Finn"]
+	}
+]
+
+const state = {
+	turnData: {
+		author: authors[0],
+		books: authors[0].books
+	}
+}
+
 ReactDOM.render(
 	<React.StrictMode>
-		<AuthorQuiz />
+		<AuthorQuiz { ...state } />
 	</React.StrictMode>,
 	document.getElementById( 'root' )
 );
