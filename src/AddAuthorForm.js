@@ -1,6 +1,7 @@
 import React from "react";
 import "./AddAuthorForm.css";
-import AuthorQuiz from "./AuthorQuiz";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class AuthorForm extends React.Component {
 
@@ -55,7 +56,7 @@ class AuthorForm extends React.Component {
 		);
 	}
 }
-function AddAuthorForm( { match, onAddAuthor } ) {
+function AddAuthorForm( { onAddAuthor } ) {
 	return (
 		<div className="AddAuthorForm">
 			<h1>Add author</h1>
@@ -64,4 +65,17 @@ function AddAuthorForm( { match, onAddAuthor } ) {
 	)
 }
 
-export default AddAuthorForm;
+function mapDispatchToProps( dispatch, props ) {
+	return {
+		onAddAuthor: ( author ) => {
+			dispatch( { type: 'ADD_AUTHOR', author } );
+			props.history.push( "/" );
+		}
+	};
+}
+
+function mapStateToProps( state ) {
+	return {};
+}
+
+export default withRouter( connect( mapStateToProps, mapDispatchToProps )( AddAuthorForm ) );
