@@ -69,11 +69,11 @@ function reducer( state = { authors, turnData: getTurnData( authors ), highlight
 		case 'CONTINUE':
 			return Object.assign( {}, state, {
 				highlight: "none",
-				turnData: getTurnData( authors )
+				turnData: getTurnData( state.authors )
 			} );
 		case 'ADD_AUTHOR':
 			return Object.assign( {}, state, {
-				authors: [action.author]
+				authors: state.authors.concat( [action.author] )
 			} );
 		default:
 			return state;
